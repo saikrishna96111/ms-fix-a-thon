@@ -23,7 +23,10 @@ def predict():
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
     output = round(prediction[0],2)
-    return render_template('index.html',prediction_text = "You are suffering from a heart disease {}".format(output))
+    if(output=="1"):
+        return render_template('index.html',prediction_text = "There is a possibility of occurence of heart disease")
+    else:
+        return render_template('index.html',prediction_text = "There is no possibility of occurence of heart disease")
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
